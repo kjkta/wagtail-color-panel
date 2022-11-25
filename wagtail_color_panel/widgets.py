@@ -34,7 +34,8 @@ class PolyfillColorInputWidget(widgets.TextInput):
             (function(){
                 function init() {
                     $("#__FIELD_ID__").spectrum({
-                        showPalette: false,
+                        showPalette: __SHOW_PALETTE__,
+                        selectionPalette: __SELECTION_PALETTE__,
                         preferredFormat: "hex",
                         showInput: true,
                     });
@@ -49,9 +50,10 @@ class PolyfillColorInputWidget(widgets.TextInput):
                 });
             })();
             </script>
-            """.replace(
-                "__FIELD_ID__", field_id
-            )
+            """
+            .replace("__FIELD_ID__", field_id)
+            .replace("__SHOW_PALETTE__", bool(attrs['preset_colors']))
+            .replace("__SELECTION_PALETTE__", attrs['preset_colors'])
         )
 
 

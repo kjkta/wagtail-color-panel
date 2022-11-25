@@ -9,10 +9,17 @@ else:
 
 
 class NativeColorPanel(FieldPanel):
+    def __init__(self, *args, **kwargs):
+        self.preset_colors = kwargs.get('preset_colors', None)
+        super().__init__(*args, **kwargs)
+
+
     def widget_overrides(self):
         # For Wagtail<3.0 we use widget_overrides
         return {
-            self.field_name: ColorInputWidget(),
+            self.field_name: ColorInputWidget(attrs={
+                'preset_colors': self.preset_colors
+            }),
         }
 
     def get_form_options(self):
@@ -26,7 +33,9 @@ class NativeColorPanel(FieldPanel):
 class PolyfillColorPanel(FieldPanel):
     def widget_overrides(self):
         return {
-            self.field_name: PolyfillColorInputWidget(),
+            self.field_name: PolyfillColorInputWidget(attrs={
+                'preset_colors': self.preset_colors
+            }),
         }
 
     def get_form_options(self):

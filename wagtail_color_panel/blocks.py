@@ -20,11 +20,14 @@ class NativeColorBlock(FieldBlock):
             "min_length": 7,
             "validators": [hex_triplet_validator],
         }
+        self.preset_colors = kwargs.get('preset_colors', None)
         super().__init__(**kwargs)
 
     @cached_property
     def field(self):
-        field_kwargs = {"widget": ColorInputWidget()}
+        field_kwargs = {"widget": ColorInputWidget(attrs={
+            'preset_colors': self.preset_colors
+            })}
         field_kwargs.update(self.field_options)
         return forms.CharField(**field_kwargs)
 
