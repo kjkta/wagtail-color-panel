@@ -4,9 +4,11 @@ function ColorInputWidget(id) {
     */
     this.textInput = $('#' + id);
     this.colorInput = $('#' + id + '-color');
+    this.presetColorsInput= $('#' + id + '-preset_colors');
 
     this.textInput.on('input', this.handleUpdate.bind(this));
     this.colorInput.on('input', this.handleUpdate.bind(this));
+    this.presetColorsInput.on('input', this.handleUpdate.bind(this));
 }
 
 ColorInputWidget.prototype.handleUpdate = function(evt) {

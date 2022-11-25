@@ -3,7 +3,7 @@
     <input class="color-input-widget__color-input" type="color" name="{{ widget.attrs.id }}-color" value="{{ widget.value }}" maxlength="7" id="{{ widget.attrs.id }}-color"
       {% if widget.attrs.preset_colors %}list="preset_colors"{% endif %}/>
     {% if widget.attrs.preset_colors %}
-    <datalist id="preset_colors">
+    <datalist id="{{ widget.attrs.id }}-preset_colors">
       {% for preset_color in widget.attrs.preset_colors %}
         <option>{{ preset_color }}</option>
       {% endfor %}
